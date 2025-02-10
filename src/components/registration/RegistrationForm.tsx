@@ -39,12 +39,13 @@ export const RegistrationForm = () => {
             </Title>
             <Text size="lg">Join us for an unforgettable literary experience!</Text>
             <form style={{ marginTop: "2rem" }} onSubmit={form.onSubmit(handleSubmit)}>
-                <Flex direction="column" w="100%" justify="space-evenly" gap="md">
+                <Flex direction="column" w="50vw" gap="md">
                     <Select
                         label="Select Festival Date"
                         data={['Day 1', 'Day 2', 'Day 3']}
                         placeholder="Choose One..."
                         required
+                        size="lg"
                         rightSection={<IconChevronDown />}
                         allowDeselect={false}
                         {...form.getInputProps('festival_date')}
@@ -53,7 +54,7 @@ export const RegistrationForm = () => {
                         placeholder="e.g. John Doe"
                         color="black"
                         label="Name"
-                        size="md"
+                        size="lg"
                         required
                         {...form.getInputProps('name')}
                     />
@@ -61,7 +62,7 @@ export const RegistrationForm = () => {
                         placeholder="e.g. john@xmail.com"
                         color="black"
                         label="Email"
-                        size="md"
+                        size="lg"
                         required
                         {...form.getInputProps('email')}
                     />
@@ -69,7 +70,7 @@ export const RegistrationForm = () => {
                         placeholder="e.g. 0123456789"
                         color="black"
                         label="Phone Number"
-                        size="md"
+                        size="lg"
                         hideControls
                         required
                         {...form.getInputProps('phone_number')}
@@ -78,7 +79,7 @@ export const RegistrationForm = () => {
                         placeholder="e.g. 18"
                         color="black"
                         label="Age"
-                        size="md"
+                        size="lg"
                         hideControls
                         required
                         {...form.getInputProps('age')}
@@ -88,6 +89,7 @@ export const RegistrationForm = () => {
                         data={["Male", "Female", "Others", "Prefer not to say"]}
                         placeholder="Choose One..."
                         required
+                        size="lg"
                         allowDeselect={false}
                         rightSection={<IconChevronDown />}
                         {...form.getInputProps('gender')}
@@ -96,12 +98,12 @@ export const RegistrationForm = () => {
                         placeholder="e.g. Delhi University"
                         color="black"
                         label="College/Profession"
-                        size="md"
+                        size="lg"
                         required
                         {...form.getInputProps('organization')}
                     />
                 </Flex>
-                <Button type="submit" color="black" my="md">
+                <Button type="submit" color="black" my="md" size="md" radius={'md'}>
                     Register
                 </Button>
             </form>
