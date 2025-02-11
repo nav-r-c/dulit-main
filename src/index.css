@@ -1,1 +1,33 @@
 @import "tailwindcss";
+
+/* For Webkit-based browsers */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #198BCC;
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    opacity: 0.4; /* Initially more transparent */
+    transition: opacity 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Increase opacity on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
+  
+  /* For Firefox, we have limited options.
+     Firefox does not support transitions for scrollbars via CSS.
+     However, the static version will still display as defined: */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #198BCC transparent;
+  }
+  
