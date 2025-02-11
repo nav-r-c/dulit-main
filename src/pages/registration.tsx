@@ -3,10 +3,10 @@ import { RegistrationForm } from "../components/registration/RegistrationForm";
 
 const Registration = () => {
     return (
-        <Flex w={'100%'} justify={'center'} align={'start'} direction={'column'} p={'5rem'}>
+        <Flex w={'100%'} justify={'center'} align={'start'} direction={'column'} p={{base: '1.5rem', lg: '5rem'}}>
             <Image 
                 src = {"/dulit-fest-logo.svg"}
-                w={'40%'}
+                w={'300px'}
             />
             <RegistrationForm />
         </Flex>
