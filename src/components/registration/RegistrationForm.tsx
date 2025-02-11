@@ -17,14 +17,17 @@ import {
   
   const registrationFormSchema = z.object({
     festival_date: z.string().min(1, { message: "Festival date is required." }),
-    name: z.string().min(1, { message: "Name is required." }),
+    name: z.string().min(1, { message: "Please enter your full name." }),
     email: z
       .string()
       .email({ message: "Enter a valid email address." })
-      .min(1, { message: "Email is required." }),
-    phone_number: z.number().min(1000000000, { message: "Enter a valid phone number." }),
-    age: z.number().min(1, { message: "Age is required." }),
-    gender: z.enum(["Male", "Female", "Others", "Prefer not to say"]),
+      .min(1, { message: "Please enter your email address." }),
+    phone_number: z.number().min(1000000000, { message: "Please Enter a valid phone number." }),
+    age: z.number()
+  .min(1, { message: "Please enter your age." })
+  .max(120, { message: "Please enter a valid age." }),
+
+    gender: z.string().min(1, { message: "Please enter your gender." }),
     organization: z.string().min(1, { message: "College/Profession is required." }),
   });
   

@@ -3,8 +3,8 @@ import { router } from './routes';
 import { Footer } from './components/common/footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import "@mantine/core/styles.css";
-import '@mantine/notifications/styles.css';
+// import "@mantine/core/styles.css";
+// import '@mantine/notifications/styles.css';
 
 export default function App() {
   return (
