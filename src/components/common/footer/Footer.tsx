@@ -1,5 +1,6 @@
-import { Box, Text, Image, Group, Flex, Divider, Anchor, Stack } from '@mantine/core';
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { Box, Text, Image, Flex, Divider, Anchor, Stack } from '@mantine/core';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 
 const quickLinks = [
   {
@@ -26,20 +27,19 @@ const connectWithUs = [
 const socialLinks = [
     { icon: FaFacebook, label: 'Facebook', link: '#' },
     { icon: FaInstagram, label: 'Instagram', link: '#' },
-    { icon: FaTwitter, label: 'X', link: '#' },
+    { icon: FaXTwitter, label: 'X', link: '#' },
     { icon: FaLinkedin, label: 'LinkedIn', link: '#' },
     { icon: FaYoutube, label: 'YouTube', link: '#' },
   ];
 
 export const Footer = () => {
   return (
-    <footer style={{ width: '100%', backgroundColor: '#fff' }}>
-      <Box size="lg" p={{ base: '2rem', md: '5rem' }}>
-        <Flex gap="xl" align="start" justify={'space-between'}>
-          {/* Logo Section */}
-          <Image src={'/dulit-fest-logo.svg'} width={120} alt="Festival Logo" />
-            
-        <Flex w={'50%'}>
+    <footer style={{ width: '100%', backgroundColor: '#fff', borderTop: '1px solid #ccc' }}>
+      <Box size="lg" p={{ base: '1.5rem', md: '5rem' }}>
+        <Flex direction={{base: 'column', lg: 'row'}} gap="xl" align="start" justify={{base: 'start', lg: 'space-between'}}>
+
+        <Image src={'/dulit-fest-logo.svg'} w={'40%'} alt="Festival Logo" />
+        <Flex w={'60%'} direction={{base: 'column', lg: 'row'}} justify={{base: 'start', lg: 'space-between'}} gap={'md'}>
           {/* Links Section */}
           <Stack>
             {/* Quick Links & Connect Sections */}
@@ -84,20 +84,19 @@ export const Footer = () => {
           </Flex>
         </Flex>
 
-
         <Divider my="lg" color='black' />
 
         {/* Bottom Section */}
-        <Stack spacing="md" align="center">
-          <Text size="sm" c="dimmed" align="center">
+        <Flex gap="md" direction={{base: 'column-reverse', lg: 'row'}} justify={{base: 'start', lg: "space-between"}}>
+          <Text size="lg" c="black">
             © 2025 Delhi University Literature Festival. All rights reserved.
           </Text>
-          <Group gap="lg">
-            <Anchor href="#" size="sm" c="black">Privacy Policy</Anchor>
-            <Anchor href="#" size="sm" c="black">Terms of Service</Anchor>
-            <Anchor href="#" size="sm" c="black">Cookie Settings</Anchor>
-          </Group>
-        </Stack>
+          <Flex direction={{base: 'column', lg: 'row'}} gap="lg">
+            <Anchor td={'underline'} href="#" size="lg" c="black">Privacy Policy</Anchor>
+            <Anchor td={'underline'} href="#" size="lg" c="black">Terms of Service</Anchor>
+            <Anchor td={'underline'} href="#" size="lg" c="black">Cookie Settings</Anchor>
+          </Flex>
+        </Flex>
       </Box>
     </footer>
   );

@@ -1,11 +1,11 @@
 import { Box, Button, Text, TextInput, Title, Flex, Select, NumberInput } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
-
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
+import { useState } from "react";
 
 const registrationFormSchema = z.object({
-    festival_date: z.enum(['Day 1', 'Day 2', 'Day 3']),
+    festival_date: z.string().min(1, { message: "Festival date is required." }),
     name: z.string().min(1, { message: "Name is required." }),
     email: z.string().email({ message: "Enter a valid email address." }).min(1, { message: "Email is required." }),
     phone_number: z.number().min(1000000000, { message: "Enter a valid phone number." }),
@@ -14,7 +14,12 @@ const registrationFormSchema = z.object({
     organization: z.string().min(1, { message: "College/Profession is required." })
 });
 
+const APP_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzQx57BKsnRQRxhom6eNoquOy4iXrRnnCN6PwN-bO3htRDR8XJ0k4xj2X0dtfyXCUAr2A/exec"
+
 export const RegistrationForm = () => {
+
+    const [loading, setLoading] = useState(false);
+
     const form = useForm({
         initialValues: {
             festival_date: '',
@@ -28,9 +33,36 @@ export const RegistrationForm = () => {
         validate: zodResolver(registrationFormSchema)
     });
 
-    const handleSubmit = (values: typeof form.values) => {
-        console.log(values);
+
+    const handleSubmit = async (values: typeof form.values) => {
+        try {
+            setLoading(true);
+            const response = await fetch(APP_SCRIPT_URL, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(values),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            setLoading(false);
+            if (data.status === "success") {
+                alert("Registration successful!");
+            } else {
+                alert("Error: " + data.message);
+            }
+        } catch (error) {
+            setLoading(false);
+            alert("Failed to submit data. Please try again.");
+            console.error(error);
+        }
     };
+    
 
     return (
         <Box my="xl">
@@ -39,49 +71,51 @@ export const RegistrationForm = () => {
             </Title>
             <Text size="lg">Join us for an unforgettable literary experience!</Text>
             <form style={{ marginTop: "2rem" }} onSubmit={form.onSubmit(handleSubmit)}>
-                <Flex direction="column" w="50vw" gap="md">
+                <Flex direction="column" w={{ base: '100%', lg: "50vw" }} gap="md">
                     <Select
                         label="Select Festival Date"
-                        data={['Day 1', 'Day 2', 'Day 3']}
+                        data={['Day 1 - 21st February 2025', 'Day 2 - 22nd February 2025', 'Day 3 - 23rd February 2025']}
                         placeholder="Choose One..."
                         required
                         size="lg"
                         rightSection={<IconChevronDown />}
                         allowDeselect={false}
                         {...form.getInputProps('festival_date')}
+                        disabled={loading}
                     />
                     <TextInput
                         placeholder="e.g. John Doe"
-                        color="black"
                         label="Name"
                         size="lg"
                         required
                         {...form.getInputProps('name')}
+                        disabled={loading}
                     />
                     <TextInput
                         placeholder="e.g. john@xmail.com"
-                        color="black"
                         label="Email"
                         size="lg"
                         required
                         {...form.getInputProps('email')}
+                        disabled={loading}
+
                     />
                     <NumberInput
                         placeholder="e.g. 0123456789"
-                        color="black"
                         label="Phone Number"
                         size="lg"
                         hideControls
                         required
+                        disabled={loading}
                         {...form.getInputProps('phone_number')}
                     />
                     <NumberInput
                         placeholder="e.g. 18"
-                        color="black"
                         label="Age"
                         size="lg"
                         hideControls
                         required
+                        disabled={loading}
                         {...form.getInputProps('age')}
                     />
                     <Select
@@ -92,18 +126,19 @@ export const RegistrationForm = () => {
                         size="lg"
                         allowDeselect={false}
                         rightSection={<IconChevronDown />}
+                        disabled={loading}
                         {...form.getInputProps('gender')}
                     />
                     <TextInput
                         placeholder="e.g. Delhi University"
-                        color="black"
                         label="College/Profession"
                         size="lg"
                         required
+                        disabled={loading}
                         {...form.getInputProps('organization')}
                     />
                 </Flex>
-                <Button type="submit" color="black" my="md" size="md" radius={'md'}>
+                <Button loading={loading} type="submit" color="black" my="md" size="md" radius={'md'}>
                     Register
                 </Button>
             </form>
