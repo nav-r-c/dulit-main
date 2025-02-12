@@ -32,4 +32,26 @@
     scrollbar-width: thin;
     scrollbar-color: #198BCC transparent;
   }
+
+  .roboto-condensed {
+    font-family: 'Roboto Condensed', monospace;
+  }
+
+  .amiri {
+    font-family: 'Amiri', 'Times New Roman', Times, serif;
+  }
+
+  .playfair-stroke {
+    font-family: 'Playfair Display', 'Times New Roman', Times, serif;
+    -webkit-text-stroke-width: 0.35px;
+    -webkit-text-stroke-color: #135EB7;
+  }
+
+  .playfair {
+    font-family: 'Playfair Display', 'Times New Roman', Times, serif;
+  }
+
+  .cinzel {
+    font-family: 'Cinzel', 'Times New Roman', Times, serif;
+  }
   
