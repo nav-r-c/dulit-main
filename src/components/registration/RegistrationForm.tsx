@@ -83,7 +83,7 @@ const APP_SCRIPT_URL =
             <Text ta="center" mb="md" size="3rem" fw="bold">
               Registration Confirmed!
             </Text>
-            <Text ta="center" mb="md" size="sm">
+            <Text ta="center" mb="md" size="lg">
               Thank you for registering! You can download your Festival Pass below.
             </Text>
             <Button component="a" href={docUrl} color="black" download>
@@ -99,9 +99,6 @@ const APP_SCRIPT_URL =
     </Modal>
   );
   
-  
-
-
 export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
   const [docModalOpened, setDocModalOpened] = useState(false);
