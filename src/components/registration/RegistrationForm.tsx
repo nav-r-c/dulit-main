@@ -86,9 +86,9 @@ const APP_SCRIPT_URL =
             <Text ta="center" mb="md" size="lg">
               Thank you for registering! You can download your Festival Pass below.
             </Text>
-            <Button component="a" href={docUrl} color="black" download>
+            <Button component="a" size="xl" radius={'lg'} href={docUrl} color="black" download>
               <Flex align="center" gap="sm">
-                <Text>Festival Pass</Text>
+                <Text size="lg">Festival Pass</Text>
                 <IconDownload />
               </Flex>
             </Button>
