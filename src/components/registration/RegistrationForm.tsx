@@ -78,8 +78,7 @@ const APP_SCRIPT_URL =
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Flex direction={'column'} align={'center'} justify={'center'} my={'-100px'}>
-
+            <Flex direction={'column'} align={'center'} justify={'center'}>
             <Text ta="center" mb="md" size="3rem" fw="bold">
               Registration Confirmed!
             </Text>
