@@ -22,7 +22,7 @@ export default function Home() {
                     />
                     <Image 
                         src = {isMobile ? '/dulit-logo-mobile.svg' :"/dulit-logo.svg"}
-                        w={{'base' : '150px', 'lg': 'auto'}}
+                        w={{'base' : '100px', 'lg': 'auto'}}
                     />
                 </Flex>
                 <Flex mt={{ 'base' : '2rem', 'lg': '4rem'}} align={'baseline'} gap={'0.25rem'}>
