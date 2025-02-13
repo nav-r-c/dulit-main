@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { motion } from 'framer-motion';
-
+import { DotLottie } from "@lottiefiles/dotlottie-web"; // Import the correct type
 
 const referralCodeRegex = /^(0[1-9]|[1-9][0-9])@dulit$/;
 
@@ -48,7 +48,13 @@ const registrationFormSchema = z.object({
 const APP_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwgoWB2x3Uo1aLoux0HBnalbEKJhKRvb-TphJwtK17LjL2nm-nVsUl3EBXX7ESFF9kyWQ/exec";
 
-  const RegistrationModal = ({ docModalOpened, setDocModalOpened, docUrl, animationCompleted, dotLottieRefCallback }) => (
+  const RegistrationModal = ({ docModalOpened, setDocModalOpened, docUrl, animationCompleted, dotLottieRefCallback } : {
+    docModalOpened : boolean,
+    setDocModalOpened : React.Dispatch<React.SetStateAction<boolean>>,
+    docUrl: string,
+    animationCompleted : boolean,
+    dotLottieRefCallback: React.RefCallback<DotLottie | null>
+  }) => (
     <Modal
       fullScreen
       withCloseButton={false}
@@ -63,7 +69,7 @@ const APP_SCRIPT_URL =
             src="/anim.lottie"
             autoplay={true}
             loop={false}
-            dotLottieRefCallback={dotLottieRefCallback}
+            dotLottieRefCallback={(dotLottieRefCallback)}
           />
         </Box>
         {animationCompleted && (
@@ -101,11 +107,12 @@ export const RegistrationForm = () => {
   const [docModalOpened, setDocModalOpened] = useState(false);
   const [docUrl, setDocUrl] = useState("");
   const [animationCompleted, setAnimationCompleted] = useState(false);
-  const [dotLottie, setDotLottie] = useState(null);
+  const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
+
 
   useEffect(() => {
 
-    function onFrameChange({currentFrame}) {
+    function onFrameChange({currentFrame} : {currentFrame : number}) {
       if (currentFrame === 93) {
         setAnimationCompleted(true);
       }
@@ -122,11 +129,12 @@ export const RegistrationForm = () => {
     };
   }, [dotLottie]);
 
-  const dotLottieRefCallback = (ref) => {
+  const dotLottieRefCallback: React.RefCallback<DotLottie | null> = (ref) => {
+    if (ref) {
+      console.log("DotLottie instance:", ref);
+    }
     setDotLottie(ref);
   };
-  
-  
 
   const form = useForm({
     initialValues: {
