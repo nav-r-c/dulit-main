@@ -58,7 +58,7 @@ const APP_SCRIPT_URL =
       centered
     >
       <Flex h="100vh" direction="column" align="center" justify="center" p={0}>
-        <Box w="50%">
+        <Box w={{base: '100%', lg: '50%'}}>
           <DotLottieReact
             src="/anim.lottie"
             autoplay={true}
@@ -72,7 +72,7 @@ const APP_SCRIPT_URL =
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Flex direction={'column'} align={'center'} justify={'center'}>
+            <Flex direction={'column'} align={'center'} justify={'center'} my={'-100px'}>
 
             <Text ta="center" mb="md" size="3rem" fw="bold">
               Registration Confirmed!
