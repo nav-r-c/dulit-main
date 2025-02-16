@@ -225,9 +225,9 @@ export const RegistrationForm = () => {
       <Box my="xl" style={{ position: "relative" }}>
         <LoadingOverlay visible={loading} />
         <Title order={2} size="3rem" pb="lg">
-          DU Literature Festival 2025
+          Welcome to the #DSGroup DU Literature Festival 2025!
         </Title>
-        <Text size="lg">Join us for an unforgettable literary experience!</Text>
+        <Text size="lg">Join us for our grandest edition yet! Open for all. Free for all. Accessibility to Literature and Readership for all!</Text>
         <form style={{ marginTop: "2rem" }} onSubmit={form.onSubmit(handleSubmit)}>
           <Flex direction="column" w={{ base: "100%", lg: "50vw" }} gap="md">
             <Select
