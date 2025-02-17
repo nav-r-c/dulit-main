@@ -86,13 +86,10 @@ import {
   export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     docModalOpened,
     setDocModalOpened,
-    docUrl,
     animationCompleted,
     dotLottieRefCallback,
-    generateDoc,
     firstName,
     dayNumber,
-    loading,
   }) => {
     /**
      * Handle downloading the screenshot of the ticket
@@ -160,7 +157,7 @@ import {
                 {/* Download/Generation Buttons */}
                 <Flex mt="lg" gap="md" wrap="wrap" justify="center">
                   {/* 1) Generate & Download PDF from server */}
-                  {!docUrl ? (
+                  {/* {!docUrl ? (
                     <Button
                       loading={loading}
                       variant="outline"
@@ -181,15 +178,17 @@ import {
                         <IconDownload />
                       </Flex>
                     </Button>
-                  )}
+                  )} */}
   
                   {/* 2) Screenshot the Ticket */}
                   <Button
-                    variant="outline"
-                    c="black"
+                    color="black"
                     onClick={handleDownloadScreenshot}
                   >
-                    Screenshot Ticket
+                      <Flex align="center" gap="sm">
+                        <Text size="md">Download Festival Pass</Text>
+                        <IconDownload />
+                      </Flex>
                   </Button>
   
                   {/* 3) Save as HTML */}
@@ -204,12 +203,12 @@ import {
                   </Button> */}
                 </Flex>
   
-                {/* Warning about doc generation time */}
+                {/* Warning about doc generation time
                 {!docUrl && (
                   <Text mt="sm" ta="center" size="sm" c="red">
                     (*Generating the festival pass PDF may take more than a minute)
                   </Text>
-                )}
+                )} */}
               </Flex>
             </motion.div>
           )}
