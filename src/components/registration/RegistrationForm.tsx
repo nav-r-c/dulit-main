@@ -48,12 +48,16 @@ const registrationFormSchema = z.object({
 const APP_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwgoWB2x3Uo1aLoux0HBnalbEKJhKRvb-TphJwtK17LjL2nm-nVsUl3EBXX7ESFF9kyWQ/exec";
 
-  const RegistrationModal = ({ docModalOpened, setDocModalOpened, docUrl, animationCompleted, dotLottieRefCallback } : {
+  const RegistrationModal = ({ docModalOpened, setDocModalOpened, docUrl, animationCompleted, dotLottieRefCallback, generateDoc, firstName, dayNumber, loading } : {
     docModalOpened : boolean,
     setDocModalOpened : React.Dispatch<React.SetStateAction<boolean>>,
-    docUrl: string,
+    docUrl: string | null,
     animationCompleted : boolean,
     dotLottieRefCallback: React.RefCallback<DotLottie | null>
+    generateDoc : (firstName : string, dayNumber : string) => void,
+    firstName : string,
+    dayNumber : string,
+    loading: boolean
   }) => (
     <Modal
       fullScreen
@@ -85,12 +89,18 @@ const APP_SCRIPT_URL =
             <Text ta="center" mb="md" size="lg">
               Thank you for registering! You can download your Festival Pass below.
             </Text>
+            {!docUrl ? <Button loading={loading} variant="outline" color="black" onClick={() => generateDoc(firstName, dayNumber)}>
+              Click here to generate Festival Pass
+            </Button>
+            :
             <Button component="a" size="xl" radius={'lg'} href={docUrl} color="black" download>
               <Flex align="center" gap="sm">
                 <Text size="lg">Festival Pass</Text>
                 <IconDownload />
               </Flex>
             </Button>
+            }
+            {!docUrl && <Text my='sm' size="sm" c="red">(*Please Note that festival pass generation may take more than a minute)</Text>}
             </Flex>
           </motion.div>
         )}
@@ -101,9 +111,12 @@ const APP_SCRIPT_URL =
 export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
   const [docModalOpened, setDocModalOpened] = useState(false);
-  const [docUrl, setDocUrl] = useState("");
+  const [docUrl, setDocUrl] = useState<string | null>(null);
   const [animationCompleted, setAnimationCompleted] = useState(false);
   const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
+  const [firstNameState, setFirstName] = useState("");
+  const [dayNumberState, setDayNumber] = useState("");
+  const [isGeneratingDoc, setIsGeneratingDoc] = useState(false);
 
 
   useEffect(() => {
@@ -146,6 +159,39 @@ export const RegistrationForm = () => {
     validate: zodResolver(registrationFormSchema),
   });
 
+  const generateDoc = async (firstName : string, dayNumber : string) => {
+    setIsGeneratingDoc(true)
+    try {
+
+    const docResponse = await fetch("https://dulit-server.onrender.com/generate-doc", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ firstName, dayNumber }),
+    });
+
+    if (!docResponse.ok) {
+      throw new Error(`Doc generation error! Status: ${docResponse.status}`);
+    }
+
+    const docData = await docResponse.json();
+
+    // Open the modal with the returned URL.
+    setDocUrl(docData.pdfUrl);
+    setIsGeneratingDoc(false);
+  }
+  catch (error) {
+    notifications.show({
+      title: "Error",
+      message: "Something went wrong.",
+      color: "red",
+      icon: <IconX size={18} />,
+    });
+  }
+
+  }
+
   const handleSubmit = async (values: typeof form.values) => {
     try {
       setLoading(true);
@@ -178,23 +224,10 @@ export const RegistrationForm = () => {
       const firstName = values.name.split(" ")[0];
       const dayNumber = values.festival_date.split(" - ")[0]; // e.g. "Day 1"
 
-      // Fetch the document generation endpoint.
-      const docResponse = await fetch("https://dulit-server.onrender.com/generate-doc", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ firstName, dayNumber }),
-      });
+      setFirstName(firstName);
+      setDayNumber(dayNumber);
+      
 
-      if (!docResponse.ok) {
-        throw new Error(`Doc generation error! Status: ${docResponse.status}`);
-      }
-
-      const docData = await docResponse.json();
-
-      // Open the modal with the returned URL.
-      setDocUrl(docData.pdfUrl);
       setDocModalOpened(true);
       setLoading(false);
     } catch (error) {
@@ -221,6 +254,10 @@ export const RegistrationForm = () => {
       docUrl={docUrl}
       animationCompleted={animationCompleted} 
       dotLottieRefCallback={dotLottieRefCallback}
+      firstName={firstNameState}
+      dayNumber={dayNumberState}
+      generateDoc={generateDoc}
+      loading={isGeneratingDoc}
     />
       <Box my="xl" style={{ position: "relative" }}>
         <LoadingOverlay visible={loading} />
