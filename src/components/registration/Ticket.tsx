@@ -60,7 +60,7 @@ import {
                 }}
                 c="black"
             >
-                {firstName}
+                {firstName.toUpperCase()}
             </Text>
 
             {/* Overlay Day Number */}
@@ -77,7 +77,7 @@ import {
                 fw="bold"
                 c="black"
             >
-                {dayNumber}
+                {dayNumber.toUpperCase()}
             </Text>
       </Box>
     );
