@@ -8,15 +8,13 @@ import {
   Select,
   NumberInput,
   LoadingOverlay,
-  Modal,
 } from "@mantine/core";
-import { IconChevronDown, IconDownload, IconX } from "@tabler/icons-react";
+import { IconChevronDown, IconX } from "@tabler/icons-react";
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { motion } from 'framer-motion';
+import { RegistrationModal } from "./Ticket";
 import { DotLottie } from "@lottiefiles/dotlottie-web"; // Import the correct type
 
 const referralCodeRegex = /^(0[1-9]|[1-9][0-9])@dulit$/;
@@ -48,65 +46,6 @@ const registrationFormSchema = z.object({
 const APP_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwgoWB2x3Uo1aLoux0HBnalbEKJhKRvb-TphJwtK17LjL2nm-nVsUl3EBXX7ESFF9kyWQ/exec";
 
-  const RegistrationModal = ({ docModalOpened, setDocModalOpened, docUrl, animationCompleted, dotLottieRefCallback, generateDoc, firstName, dayNumber, loading } : {
-    docModalOpened : boolean,
-    setDocModalOpened : React.Dispatch<React.SetStateAction<boolean>>,
-    docUrl: string | null,
-    animationCompleted : boolean,
-    dotLottieRefCallback: React.RefCallback<DotLottie | null>
-    generateDoc : (firstName : string, dayNumber : string) => void,
-    firstName : string,
-    dayNumber : string,
-    loading: boolean
-  }) => (
-    <Modal
-      fullScreen
-      withCloseButton={false}
-      opened={docModalOpened}
-      onClose={() => setDocModalOpened(false)}
-      p={0}
-      centered
-    >
-      <Flex h="100vh" direction="column" align="center" justify="center" p={0}>
-        <Box w={{base: '100%', lg: '50%'}}>
-          <DotLottieReact
-            src="/anim.lottie"
-            autoplay={true}
-            loop={false}
-            dotLottieRefCallback={(dotLottieRefCallback)}
-          />
-        </Box>
-        {animationCompleted && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Flex direction={'column'} align={'center'} justify={'center'}>
-            <Text ta="center" mb="md" size="3rem" fw="bold">
-              Registration Confirmed!
-            </Text>
-            <Text ta="center" mb="md" size="lg">
-              Thank you for registering! You can download your Festival Pass below.
-            </Text>
-            {!docUrl ? <Button loading={loading} variant="outline" color="black" onClick={() => generateDoc(firstName, dayNumber)}>
-              Click here to generate Festival Pass
-            </Button>
-            :
-            <Button component="a" size="xl" radius={'lg'} href={docUrl} color="black" download>
-              <Flex align="center" gap="sm">
-                <Text size="lg">Festival Pass</Text>
-                <IconDownload />
-              </Flex>
-            </Button>
-            }
-            {!docUrl && <Text my='sm' size="sm" c="red">(*Please Note that festival pass generation may take more than a minute)</Text>}
-            </Flex>
-          </motion.div>
-        )}
-      </Flex>
-    </Modal>
-  );
   
 export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
@@ -114,8 +53,8 @@ export const RegistrationForm = () => {
   const [docUrl, setDocUrl] = useState<string | null>(null);
   const [animationCompleted, setAnimationCompleted] = useState(false);
   const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
-  const [firstNameState, setFirstName] = useState("");
-  const [dayNumberState, setDayNumber] = useState("");
+  const [firstNameState, setFirstNameState] = useState("");
+  const [dayNumberState, setDayNumberState] = useState("");
   const [isGeneratingDoc, setIsGeneratingDoc] = useState(false);
 
 
@@ -224,9 +163,8 @@ export const RegistrationForm = () => {
       const firstName = values.name.split(" ")[0];
       const dayNumber = values.festival_date.split(" - ")[0]; // e.g. "Day 1"
 
-      setFirstName(firstName);
-      setDayNumber(dayNumber);
-      
+      setFirstNameState(firstName);
+      setDayNumberState(dayNumber);
 
       setDocModalOpened(true);
       setLoading(false);
