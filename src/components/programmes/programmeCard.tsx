@@ -60,6 +60,15 @@ function ProgrammeCard({ programme, isVariantOne }: { programme: any; isVariantO
         </Flex>
 
       </Flex>
+      <Divider my="lg" />
+      <Text
+        c="#2162AE"
+        size={isMobile ? 'md' : 'lg'}
+        fw={500}
+        style={{ fontFamily: 'Amiri, Times New Roman' }}
+      >
+        {programme.description}
+      </Text>
     </Card>
   );
 }
