@@ -65,7 +65,7 @@ export default function SpeakersGrid() {
 
       {/* 🧑‍🎤 Speaker Cards */}
       <Grid justify="center">
-        {data.slice(0, 8).map((speaker: any, index: number) => (
+        {data.slice(0, isMobile ? 3 : 8).map((speaker: any, index: number) => (
           <Grid.Col 
             key={speaker.id} 
             span={{ base: 12, sm: 6, md: 4, lg: 3 }} // Fully responsive grid
@@ -88,6 +88,12 @@ export default function SpeakersGrid() {
       </Grid>
       
       {/* 🔵 View All Button */}
+      <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }} // Only animate once when in view
+            >
       <Center mt="md">
         <Button
           size="xl"
@@ -98,6 +104,7 @@ export default function SpeakersGrid() {
           View all
         </Button>
       </Center>
+      </motion.div>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Grid } from "swiper/modules"; // Import Grid module
+import "swiper/css"; // Ensure Swiper styles are imported
+import "swiper/css/grid"; // Import Grid styles
 
 import SpeakerCard from "../common/speaker-card";
 import { getSpeakers } from "../../apiClient";
@@ -28,7 +30,7 @@ export default function SpeakerCarousel() {
         1024: { slidesPerView: 4, grid: { rows: 3 } }, // Larger screens: 4 columns, 2 rows
       }}
     >
-      {speakers.map((speaker: any) => (
+      {speakers.map((speaker) => (
         <SwiperSlide key={speaker.id}>
           <SpeakerCard 
             maskUrl="/mask.svg"
