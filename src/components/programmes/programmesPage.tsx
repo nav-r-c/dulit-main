@@ -22,11 +22,18 @@ function ProgrammePage() {
   const uniqueVenues = [...new Set(programmes.map((p: any) => p.venue))];
 
   // Filter logic
-  const filteredProgrammes = programmes.filter((p: any) => {
+  const filteredProgrammes = programmes
+  .filter((p: any) => {
     const dayMatch = dayFilter ? p.day_number === Number(dayFilter) : true;
     const venueMatch = venueFilter ? p.venue === venueFilter : true;
     return dayMatch && venueMatch;
+  })
+  .sort((a: any, b: any) => {
+    const timeA = a.start_datetime; // Assuming format "HH:MM"
+    const timeB = b.start_datetime;
+    return timeA.localeCompare(timeB); // String comparison for time sorting
   });
+
 
   return (
     <Box w={isMobile ? '100%' : '90%'} size="sm" py="xl" px={isMobile ? 'sm' : 'lg'} m="auto">
