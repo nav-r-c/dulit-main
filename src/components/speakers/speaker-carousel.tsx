@@ -6,6 +6,7 @@ import "swiper/css/grid"; // Import Grid styles
 
 import SpeakerCard from "../common/speaker-card";
 import { getSpeakers } from "../../apiClient";
+import { Link } from "react-router";
 
 export default function SpeakerCarousel() {
   const { data: speakers, error, isLoading } = useQuery({
@@ -31,13 +32,15 @@ export default function SpeakerCarousel() {
       }}
     >
       {speakers.map((speaker : any) => (
-        <SwiperSlide key={speaker.id}>
+        <SwiperSlide key={speaker._id}>
+        <Link  to={`/speakers/${speaker._id}`}>
           <SpeakerCard 
             maskUrl="/mask.svg"
             bgUrl="/speaker-mask.svg"
             name={speaker.name}
             imageUrl={speaker.imageUrl}
           />
+        </Link>
         </SwiperSlide>
       ))}
     </Swiper>
