@@ -89,7 +89,7 @@ function ProgrammePage() {
           width: '100%',
         }}
       >
-        Day {dayFilter}
+        {Number(dayFilter) === 1 ? "Friday, 21st February" : Number(dayFilter) === 2 ? "Saturday, 22nd February" : "Sunday, 23rd February"}
       </Text>
 
       {/* Loading State */}
