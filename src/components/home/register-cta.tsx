@@ -31,7 +31,7 @@ export default function RegisterCTA() {
       animate={inView ? "visible" : "hidden"}
       variants={fadeInUp}
     >
-      <Flex direction="column" justify="center" align="center" h="80vh">
+      <Flex direction="column" justify="center" align="center" h={ isMobile ? '50vh' : '100vh'}>
         <Text
           fw="bold"
           c="#FF9C82"

@@ -5,6 +5,7 @@ import RootLayout from "../components/RootLayout"; // Create this layout with Na
 const Registration = lazy(() => import("../pages/registration"));
 const Home = lazy(() => import("../pages/home"));
 const Speakers = lazy(() => import("../pages/speakers"));
+const Programmes = lazy(() => import("../pages/programmes"));
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "speakers",
         element: <Speakers />,
+      },
+      {
+        path: "programmes",
+        element: <Programmes />,
       },
       {
         path: "*",

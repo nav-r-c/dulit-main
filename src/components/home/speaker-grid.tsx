@@ -88,12 +88,6 @@ export default function SpeakersGrid() {
       </Grid>
       
       {/* 🔵 View All Button */}
-      <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }} // Only animate once when in view
-            >
       <Center mt="md">
         <Button
           size="xl"
@@ -104,7 +98,6 @@ export default function SpeakersGrid() {
           View all
         </Button>
       </Center>
-      </motion.div>
     </div>
   );
 }

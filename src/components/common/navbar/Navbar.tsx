@@ -57,7 +57,7 @@ export default function Navbar() {
                 Speakers
               </Link>
               <Link
-                to="/programme"
+                to="/programmes"
                 style={{ color: "white", textDecoration: "none" }}
               >
                 Programme
@@ -116,7 +116,7 @@ export default function Navbar() {
             Speakers
           </Link>
           <Link
-            to="/programme"
+            to="/programmes"
             onClick={close}
             style={{
               color: "#2967B1",

@@ -9,3 +9,8 @@ export const getSpeakers = async () => {
   const { data } = await apiClient.get("/speakers");
   return data;
 };
+
+export const getProgrammes = async () => {
+  const { data } = await apiClient.get("/programmes");
+  return data;
+};
