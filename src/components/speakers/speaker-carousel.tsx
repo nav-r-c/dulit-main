@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Grid } from "swiper/modules"; // Import Grid module
-import "swiper/css"; // Ensure Swiper styles are imported
-import "swiper/css/grid"; // Import Grid styles
 
 import SpeakerCard from "../common/speaker-card";
 import { getSpeakers } from "../../apiClient";
