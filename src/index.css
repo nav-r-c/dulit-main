@@ -3,6 +3,7 @@
 @import '@mantine/notifications/styles.css';
 @import "swiper/css";
 @import "swiper/css/autoplay";
+@import "swiper/css/effect-coverflow";
 
 
 /* For Webkit-based browsers */

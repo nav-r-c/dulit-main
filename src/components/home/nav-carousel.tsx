@@ -3,8 +3,6 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 import { Image } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks"
-import "swiper/css";
-import "swiper/css/effect-coverflow";
 
 const images = [
   { src: "/carousel/programmes.svg", link: "/programmes" },
@@ -34,7 +32,7 @@ export default function CircularCarousel() {
         }}
         modules={[Autoplay, EffectCoverflow]}
         onProgress={(swiper) => {
-          swiper.slides.forEach((slide, i) => {
+          swiper.slides.forEach((slide) => {
             const slideProgress = (slide as any).progress; // Type assertion to access progress
             let rotation = 0;
             let translateY = 0;
@@ -57,7 +55,7 @@ export default function CircularCarousel() {
         style={{ width: "100%", height: "auto" }}
       >
         {images.map((item, index) => (
-          <SwiperSlide key={index} onClick={() => navigate(item.link)} style={{ width: isMobile ?"80%" : 'auto' }}>
+          <SwiperSlide key={`slide`} onClick={() => navigate(item.link)} style={{ width: isMobile ?"80%" : 'auto' }}>
             <Image
               src={item.src}
               alt={`Slide ${index + 1}`}
