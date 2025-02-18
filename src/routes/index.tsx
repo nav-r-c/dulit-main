@@ -1,16 +1,17 @@
 import { lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import RootLayout from "../components/RootLayout"; // Create this layout with Navbar/Footer
+import RootLayout from "../components/RootLayout"; // Shared layout (Navbar/Footer)
 
 const Registration = lazy(() => import("../pages/registration"));
 const Home = lazy(() => import("../pages/home"));
 const Speakers = lazy(() => import("../pages/speakers"));
+const SpeakerDetails = lazy(() => import("../pages/SpeakerDetails")); // Dynamic page
 const Programmes = lazy(() => import("../pages/programmes"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // shared layout with Navbar, Footer, etc.
+    element: <RootLayout />, // Shared Layout
     children: [
       {
         index: true,
@@ -22,7 +23,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "speakers",
-        element: <Speakers />,
+        children: [
+          {
+            index: true,
+            element: <Speakers />, // Shows list of speakers
+          },
+          {
+            path: ":id", // Dynamic route for individual speakers
+            element: <SpeakerDetails />,
+          },
+        ],
       },
       {
         path: "programmes",
@@ -30,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <Navigate to="/" replace />, // optional: redirect unknown routes
+        element: <Navigate to="/" replace />, // Redirect unknown routes
       },
     ],
   },

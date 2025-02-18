@@ -1,8 +1,8 @@
-import { Grid, Center, Button, Text, Box, Group, Flex } from "@mantine/core";
+import { Grid, Center, Button, Text, Flex } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { getSpeakers } from "../../apiClient";
 import SpeakerCard from "../common/speaker-card";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@mantine/hooks";
 
@@ -67,7 +67,7 @@ export default function SpeakersGrid() {
       <Grid justify="center">
         {data.slice(0, isMobile ? 3 : 8).map((speaker: any, index: number) => (
           <Grid.Col 
-            key={speaker.id} 
+            key={speaker._id} 
             span={{ base: 12, sm: 6, md: 4, lg: 3 }} // Fully responsive grid
           >
             <motion.div
@@ -76,12 +76,14 @@ export default function SpeakersGrid() {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }} // Only animate once when in view
             >
+              <Link to={`/speakers/${speaker._id}`}>
               <SpeakerCard 
                 maskUrl="/mask.svg"
                 bgUrl="/speaker-mask.svg"
                 name={speaker.name}
                 imageUrl={speaker.imageUrl}
               />
+              </Link>
             </motion.div>
           </Grid.Col>
         ))}

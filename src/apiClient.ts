@@ -10,6 +10,11 @@ export const getSpeakers = async () => {
   return data;
 };
 
+export const getSpeakerById = async (id : string) => {
+  const { data } = await apiClient.get(`/speakers/${id}`);
+  return data;
+};
+
 export const getProgrammes = async () => {
   const { data } = await apiClient.get("/programmes");
   return data;
