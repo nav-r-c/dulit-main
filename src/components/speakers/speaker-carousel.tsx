@@ -31,7 +31,7 @@ export default function SpeakerCarousel() {
         1024: { slidesPerView: 4, grid: { rows: 3 } }, // Larger screens: 4 columns, 2 rows
       }}
     >
-      {filteredSpeakers.map((speaker : any) => (
+      {filteredSpeakers?.map((speaker : any) => (
         <SwiperSlide key={speaker._id}>
         <Link  to={`/speakers/${speaker._id}`}>
           <SpeakerCard 
