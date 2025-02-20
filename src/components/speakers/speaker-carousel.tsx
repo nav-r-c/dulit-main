@@ -12,6 +12,8 @@ export default function SpeakerCarousel() {
     queryFn: getSpeakers,
   });
 
+  const filteredSpeakers = speakers?.sort((a : any, b : any) => a.priority - b.priority)
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading speakers.</p>;
 
@@ -29,7 +31,7 @@ export default function SpeakerCarousel() {
         1024: { slidesPerView: 4, grid: { rows: 3 } }, // Larger screens: 4 columns, 2 rows
       }}
     >
-      {speakers.map((speaker : any) => (
+      {filteredSpeakers.map((speaker : any) => (
         <SwiperSlide key={speaker._id}>
         <Link  to={`/speakers/${speaker._id}`}>
           <SpeakerCard 

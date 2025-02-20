@@ -10,10 +10,13 @@ import { useMediaQuery } from "@mantine/hooks";
 export default function SpeakersGrid() {
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data : speakers, isLoading, isError } = useQuery({
     queryKey: ["speakers"],
     queryFn: getSpeakers,
   });
+
+  const filteredSpeakers = speakers?.sort((a : any, b : any) => a.priority - b.priority)
+
 
     const isMobile = useMediaQuery("(max-width: 768px)");
     
@@ -65,7 +68,7 @@ export default function SpeakersGrid() {
 
       {/* 🧑‍🎤 Speaker Cards */}
       <Grid justify="center">
-        {data.slice(0, isMobile ? 3 : 8).map((speaker: any, index: number) => (
+        {filteredSpeakers.slice(0, isMobile ? 3 : 8).map((speaker: any, index: number) => (
           <Grid.Col 
             key={speaker._id} 
             span={{ base: 12, sm: 6, md: 4, lg: 3 }} // Fully responsive grid

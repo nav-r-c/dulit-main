@@ -21,17 +21,15 @@ export default function SpeakerCard({ name, imageUrl, maskUrl, bgUrl }: SpeakerC
       />
 
       {/* Masked Speaker Image */}
-      <div
-
-      >
+      <div>
         <Image
           src={imageUrl}
           alt={name}
           style={{
             objectFit: "cover",
-            transform: "translateY(-8%)", // Moves image up slightly for better centering
-            width: "96%",
-            height: "100%",
+            transform: "translateY(1%) translateX(0%)", // Moves image up slightly for better centering
+            width: "97%",
+            height: "auto",
             position: "absolute",
             top: 0,
             left: 0,
@@ -51,8 +49,8 @@ export default function SpeakerCard({ name, imageUrl, maskUrl, bgUrl }: SpeakerC
       </div>
 
       {/* Speaker Name */}
-      <Stack align="center" gap={4} style={{ position: "absolute", bottom: 10, width: "100%", zIndex: 2 }}>
-        <Text size="xl" fw={500} style={{ fontFamily: "Lora, serif", color: "#000" }}>
+      <Stack align="center" gap={4} style={{ position: "absolute", bottom: 0, width: "100%", zIndex: 2 }}>
+        <Text size="md" fw={500} style={{ fontFamily: "Lora, serif", color: "#000" }}>
           {name}
         </Text>
       </Stack>
