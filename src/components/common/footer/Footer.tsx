@@ -1,5 +1,5 @@
 import { Box, Text, Image, Flex, Divider, Anchor, Stack } from '@mantine/core';
-import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import {FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 
 const quickLinks = [

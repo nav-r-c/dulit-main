@@ -68,6 +68,12 @@ export default function Navbar() {
               >
                 Partners
               </Link>
+              <Link
+                to="/house-of-fiction"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                House Of Fiction
+              </Link>
             </Group>
           )}
 
@@ -142,6 +148,17 @@ export default function Navbar() {
             }}
           >
             Partners
+          </Link>
+          <Link
+            to="/house-of-fiction"
+            onClick={close}
+            style={{
+              color: "#2967B1",
+              textDecoration: "none",
+              fontSize: "1.125rem",
+            }}
+          >
+            House Of Fiction
           </Link>
           <Button
             component={Link}
