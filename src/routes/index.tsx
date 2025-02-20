@@ -1,46 +1,76 @@
 import { lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import RootLayout from "../components/RootLayout"; // Shared layout (Navbar/Footer)
+import RootLayout from "../components/RootLayout";
+import SuspenseWrapper from "../components/SuspenseWrapper";
 
 const Registration = lazy(() => import("../pages/registration"));
 const Home = lazy(() => import("../pages/home"));
 const Speakers = lazy(() => import("../pages/speakers"));
-const SpeakerDetails = lazy(() => import("../pages/SpeakerDetails")); // Dynamic page
+const SpeakerDetails = lazy(() => import("../pages/SpeakerDetails"));
 const Programmes = lazy(() => import("../pages/programmes"));
+const Partners = lazy(() => import("../pages/partners"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // Shared Layout
+    element: <RootLayout />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <SuspenseWrapper>
+            <Home />
+          </SuspenseWrapper>
+        ),
       },
       {
         path: "registration",
-        element: <Registration />,
+        element: (
+          <SuspenseWrapper>
+            <Registration />
+          </SuspenseWrapper>
+        ),
       },
       {
         path: "speakers",
         children: [
           {
             index: true,
-            element: <Speakers />, // Shows list of speakers
+            element: (
+              <SuspenseWrapper>
+                <Speakers />
+              </SuspenseWrapper>
+            ),
           },
           {
-            path: ":id", // Dynamic route for individual speakers
-            element: <SpeakerDetails />,
+            path: ":id",
+            element: (
+              <SuspenseWrapper>
+                <SpeakerDetails />
+              </SuspenseWrapper>
+            ),
           },
         ],
       },
       {
         path: "programmes",
-        element: <Programmes />,
+        element: (
+          <SuspenseWrapper>
+            <Programmes />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: "partners",
+        element: (
+          <SuspenseWrapper>
+            <Partners />
+          </SuspenseWrapper>
+        ),
       },
       {
         path: "*",
-        element: <Navigate to="/" replace />, // Redirect unknown routes
+        element: <Navigate to="/" replace />,
       },
     ],
   },

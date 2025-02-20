@@ -5,6 +5,7 @@ import { Autoplay, Grid } from "swiper/modules"; // Import Grid module
 import SpeakerCard from "../common/speaker-card";
 import { getSpeakers } from "../../apiClient";
 import { Link } from "react-router";
+import { useEffect } from "react";
 
 export default function SpeakerCarousel() {
   const { data: speakers, error, isLoading } = useQuery({
@@ -13,6 +14,10 @@ export default function SpeakerCarousel() {
   });
 
   const filteredSpeakers = speakers?.sort((a : any, b : any) => a.priority - b.priority)
+
+  useEffect(()=> {
+    console.log(filteredSpeakers);
+  }, [filteredSpeakers])
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading speakers.</p>;

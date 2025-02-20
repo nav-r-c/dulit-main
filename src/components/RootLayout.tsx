@@ -8,7 +8,7 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <Box mt={50}>
+      <Box pt={10} mt={50}>
         <Outlet />
       </Box>
       <Footer />

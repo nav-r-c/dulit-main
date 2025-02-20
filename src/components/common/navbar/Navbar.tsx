@@ -62,6 +62,12 @@ export default function Navbar() {
               >
                 Programme
               </Link>
+              <Link
+                to="/partners"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                Partners
+              </Link>
             </Group>
           )}
 
@@ -125,6 +131,17 @@ export default function Navbar() {
             }}
           >
             Programme
+          </Link>
+          <Link
+            to="/partners"
+            onClick={close}
+            style={{
+              color: "#2967B1",
+              textDecoration: "none",
+              fontSize: "1.125rem",
+            }}
+          >
+            Partners
           </Link>
           <Button
             component={Link}
