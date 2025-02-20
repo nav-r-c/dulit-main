@@ -9,6 +9,7 @@ const Speakers = lazy(() => import("../pages/speakers"));
 const SpeakerDetails = lazy(() => import("../pages/SpeakerDetails"));
 const Programmes = lazy(() => import("../pages/programmes"));
 const Partners = lazy(() => import("../pages/partners"));
+const House = lazy(() => import("../pages/house-of-fiction"));
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
         element: (
           <SuspenseWrapper>
             <Registration />
+          </SuspenseWrapper>
+        ),
+      },
+      {
+        path: "house-of-fiction",
+        element: (
+          <SuspenseWrapper>
+            <House />
           </SuspenseWrapper>
         ),
       },
