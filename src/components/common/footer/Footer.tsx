@@ -6,9 +6,9 @@ const quickLinks = [
   {
     title: 'Quick Links',
     links: [
-      { label: 'About Us', link: '#' },
-      { label: 'Contact Us', link: '#' },
-      { label: 'Events', link: '#' },
+      // { label: 'About Us', link: '#' },
+      // { label: 'Contact Us', link: '#' },
+      { label: 'Events', link: '/programmes' },
     ],
   },
 ];
@@ -17,19 +17,19 @@ const connectWithUs = [
   {
     title: 'Connect With Us',
     links: [
-      { label: 'Media', link: '#' },
-      { label: 'Partners', link: '#' },
-      { label: 'Sponsors', link: '#' },
+      // { label: 'Media', link: '#' },
+      { label: 'Partners', link: '/partners' },
+      // { label: 'Sponsors', link: '#' },
     ],
   },
 ];
 
 const socialLinks = [
-    { icon: FaFacebook, label: 'Facebook', link: '#' },
-    { icon: FaInstagram, label: 'Instagram', link: '#' },
-    { icon: FaXTwitter, label: 'X', link: '#' },
-    { icon: FaLinkedin, label: 'LinkedIn', link: '#' },
-    { icon: FaYoutube, label: 'YouTube', link: '#' },
+    // { icon: FaFacebook, label: 'Facebook', link: '#' },
+    { icon: FaInstagram, label: 'Instagram', link: 'https://www.instagram.com/dulitfest?igsh=aTRlcDlnOG50dm0%3D&utm_source=qr' },
+    { icon: FaXTwitter, label: 'X', link: 'https://x.com/dulitfest?s=11' },
+    { icon: FaLinkedin, label: 'LinkedIn', link: 'https://www.linkedin.com/company/delhi-university-literature-fest/' },
+    { icon: FaYoutube, label: 'YouTube', link: 'https://youtube.com/playlist?list=PLD1nfo-60R_IAan6MO-lsvuU--Cav1YCY&si=dVdI4C1Iy-i6cCjZ' },
   ];
 
   export const Footer = () => {
@@ -94,11 +94,11 @@ const socialLinks = [
             <Text size="lg" c="black">
               © 2025 Delhi University Literature Festival. All rights reserved.
             </Text>
-            <Flex direction={{base: 'column', lg: 'row'}} gap="lg">
+            {/* <Flex direction={{base: 'column', lg: 'row'}} gap="lg">
               <Anchor td={'underline'} href="#" size="lg" c="black">Privacy Policy</Anchor>
               <Anchor td={'underline'} href="#" size="lg" c="black">Terms of Service</Anchor>
               <Anchor td={'underline'} href="#" size="lg" c="black">Cookie Settings</Anchor>
-            </Flex>
+            </Flex> */}
           </Flex>
         </Box>
       </footer>
