@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "@mantine/core/styles.css";
 @import '@mantine/notifications/styles.css';
+@import "swiper/css";
+@import "swiper/css/autoplay";
+@import "swiper/css/effect-coverflow";
+@import "swiper/css/grid"; 
+
+
 
 /* For Webkit-based browsers */
 ::-webkit-scrollbar {

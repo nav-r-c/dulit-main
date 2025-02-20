@@ -1,6 +1,5 @@
 import { Image, Flex } from "@mantine/core";
 import { RegistrationForm } from "../components/registration/RegistrationForm";
-import { Footer } from '../components/common/footer/Footer';
 
 
 const Registration = () => {
@@ -11,7 +10,6 @@ const Registration = () => {
                 w={'300px'}
             />
             <RegistrationForm />
-            <Footer />
         </Flex>
     )
 }
